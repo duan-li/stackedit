@@ -9,6 +9,7 @@ install:
   - npm install
 
 before_deploy:
+  - npm run build
   - mv dist public
 
 deploy:
