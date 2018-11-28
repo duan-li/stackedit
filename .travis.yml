@@ -1,16 +1,30 @@
 language: node_js
 
 node_js:
-  - "8"
+  - '8'
 
-services:
-  - docker
+cache: npm
+
+install:
+  - npm install
+
 
 before_deploy:
-  - docker build -t benweet/stackedit .
+  - mv dict public
 
 deploy:
-  provider: script
-  script: bash build/docker-push-tag.sh
+  skip_cleanup: true
+  provider: firebase
+  token:
+    secure: "gdZzdXBX1rPYI4lrOLND7s+hW3TIduo5Syt5xINNxmnLPUXfRCjCqa9AUgDCjY76vnT/IWVknfDRFUfeKLyKRCfT/XT1kg/x7cuzKq3xY1b43zkXSliAAQLAvQCIlC+0WD+/KIRieGWexjaqSBYMCcsCpPvMmtKymiRbX9jus8E9UgbwFuc1DIJslfnL+dOqAqXBtnx0zbfib/vOW1aWmi96aPf27jwIc5rRDDB8E7U2CWFFS9yi4zcbt/gPPGEGXUgDhuLX/suYOplbbAP64YS5KDTtwjEYlKXFypjSp6KBdl4uFMg6NfAnXw/moC2ochDRAxg5NuWDHxxMCbb9sg2Fa9bt1WpcMOKNxgT+Tt/uU+yzuLCYWl56ekt6PwAMDrprhyFbKuXXVxmoT9ArlaVzXNMJRKUcFV97rOMe2E/8RM8gHc5csyBH+hQGtouUTEPLwF213cy5CcFKwpdYfHF2t6epSgBrWO4Yhw/n9RJwmNh3fTNNrmC53uqRLhZ4Ytri7dNeTBDdS1HfdiK4dj4buD4b4T2MaZ+fyveQyNZUIWXR4QqNXoDqSybyjLz2kpBw4mqIJSh4qtCJkP4R2rSuRM9lsu1p6iCv4N1Cw619mK4eWKacAwJSD5SbRxcL2u8KWAe2+EJ0+klq8yg8+llg4LAIYk/02bPJef3o06U="
+  project: md-liduan-net
   on:
-    tags: true
+    branch: master
+
+notifications:
+  email:
+    recipients:
+    - inputx@gmail.com
+    on_success: change
+    on_failure: always
+
