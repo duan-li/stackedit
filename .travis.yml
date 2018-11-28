@@ -8,9 +8,8 @@ cache: npm
 install:
   - npm install
 
-
 before_deploy:
-  - mv dict public
+  - mv dist public
 
 deploy:
   skip_cleanup: true
