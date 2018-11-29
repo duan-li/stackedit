@@ -9,6 +9,11 @@
       "**/build/**",
       "**/test/**",
       "**/src/**"
-    ]
+    ],
+    "redirects": [ {
+      "source" : "/oauth2/callback",
+      "destination" : "/static/oauth2/callback.html",
+      "type" : 301
+    } ]
   }
 }
